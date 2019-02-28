@@ -29,10 +29,13 @@ minetest.register_on_joinplayer(function(player)
 end)
 
 minetest.register_chatcommand("set_anim", {
-	description = "Set the player's animation\n"..table.concat(anim, ", "),
+	description = "Set the player's animation\n" ..
+		"stand, sit, walk, mine, lay, walk_mine",
 	func = function(name)
 		local p = minetest.get_player_by_name(name)
 
-		p:set_animation(anim[param], 57)
+		if anim[param] then
+			p:set_animation(anim[param], 57)
+		end
 	end
 })
